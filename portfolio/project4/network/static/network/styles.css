@@ -1,0 +1,56 @@
+#old_posts{
+    background-color: #157d9c;
+    padding: 10px;
+    margin-bottom: 10px;
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    border-radius: 2%;
+    margin-left: 5px;
+    
+}
+
+#old_posts:hover{
+    background-color: #1b9ac1;
+}
+
+#delete-button{
+    float:right;
+    position: relative;
+    bottom : 50px;
+    border-radius: 10%;
+}
+
+#delete-button:active{
+    background-color: #b6160a;
+}
+
+#edit-button{
+    float:right;
+    position: relative;
+    bottom : 50px;
+    border-radius: 10%;
+}
+
+#edit-button:active{
+    background-color: #b6160a;
+}
+#save-button{
+    float:right;
+    position: relative;
+    bottom : 50px;
+    border-radius: 10%;
+}
+
+#save-button:active{
+    background-color: #b6160a;
+}
+
+#follow_button:hover{
+    background-color: #1d07ca;
+}
+
+body{
+    background-color: black;
+}

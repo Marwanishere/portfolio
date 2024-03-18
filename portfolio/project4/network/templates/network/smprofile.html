@@ -1,0 +1,40 @@
+{% extends "network/layout.html" %}
+{% block body %}
+    <h1>{{ username }} {{ followstatus }}</h1>
+    {% if username != request.user.username and user.is_authenticated %}
+    <a type="button" href="{% url 'smprofilefollowing' username=username %}" class="btn btn-primary" followstatus = "{{ followstatus }}" id ="follow_button" >Follow</a>
+    {% endif %}
+    {% for post in selected_users_old_posts %}
+        <div id = "old_posts">
+            <h5>{{ post.title }}</h5>
+            <h6 data-id = "{{ post.id }}" id = "original-text" style="color:rgb(43, 42, 42);">{{ post.content }}</h6>
+            <textarea data-id = "{{ post.id }}" style= "display: none" id="text-area"></textarea>
+            <p style=" color:rgb(43, 42, 42);"><span style = "font-size: x-small;">{{ post.timestamp }}</span></p>
+            {% if post.liked %}
+                <button class="btn btn-clear" id="like-button" data-id="{{ post.id }}" >❤️</button>
+                <button class="btn btn-clear" id="unlike-button" data-id="{{ post.id }}" style="display: none" >🖤</button>
+
+            {% else %}
+                <button class="btn btn-clear" id="like-button" data-id="{{ post.id }}"  style="display: none">❤️</button>
+                <button class="btn btn-clear" id="unlike-button" data-id="{{ post.id }}" >🖤</button>
+            {% endif %}
+            {% if post.user.username == request.user.username %}
+                <button class="btn btn-light" id="delete-button" data-id="{{ post.id }}">Delete</button>
+                <button class="btn btn-dark" id="edit-button" data-id="{{ post.id }}">Edit</button>
+                <button class="btn btn-dark" id="save-button" data-id="{{ post.id }}" style = "display: none">Save</button>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <!-- for optional aestitic details i have used the bootstrap library link found on the network project page -->
+            <!-- https://getbootstrap.com/docs/4.4/components/pagination/ -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if lastPageUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ lastPageUrl}}">Previous</a></li>
+                    {% endif %}
+                    {% if more_posts %}
+                    <li class="page-item"><a class="page-link" href="{{ nextPageUrl }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+{% endblock %}

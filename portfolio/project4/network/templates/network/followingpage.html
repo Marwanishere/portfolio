@@ -1,0 +1,30 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <html lang="en">
+        <body>
+            {% for post in old_posts %}
+                <div id = "old_posts">
+                    <h5>{{ post.title }}</h5>
+                    <h6 style="color:rgb(43, 42, 42);">{{ post.content }}</h6>
+                    <p style=" color:rgb(43, 42, 42);"><span style = "font-size: x-small;">{{ post.timestamp }}</span> ❤️ <span>{{ post.likes }}</span></p>
+                    <!-- span can be used to style things out differently that are on the same line -->
+                    <a href="{% url 'smprofilefollowing' post.user.username %}" class="badge badge-primary">{{ post.user }}</a>
+                    <!-- i want the above line to take the user to a page that shows all of the posts made by that user -->
+                </div>
+            {% endfor %}
+            <!-- for optional aestitic details i have used the bootstrap library link found on the network project page -->
+            <!-- https://getbootstrap.com/docs/4.4/components/pagination/ -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if lastPageUrl %}
+                    <li class="page-item"><a class="page-link" href="{{ lastPageUrl}}">Previous</a></li>
+                    {% endif %}
+                    {% if more_posts %}
+                    <li class="page-item"><a class="page-link" href="{{ nextPageUrl }}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </body>
+    </html>
+{% endblock %}
